@@ -1,53 +1,19 @@
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../pages/HomePage';
 import { setupPage, cleanupPage } from '../setupTest/test-setup';
-import { NewsPage } from '../pages/NewsPage';
-import {SportPage} from "../pages/SportPage";
-import {BusinessPage} from "../pages/BusinessPage";
-import {InnovationPage} from "../pages/InnovationPage";
-import {CulturePage} from "../pages/CulturePage";
-import {ArtsPage} from "../pages/ArtsPage";
-import {TravelPage} from "../pages/TravelPage";
-import {EarthPage} from "../pages/EarthPage";
-import {AudioPage} from "../pages/AudioPage";
-import {VideoPage} from "../pages/VideoPage";
-import {LivePage} from "../pages/LivePage";
+import { createPages } from '../pages';
 import { clickCategoryAndVerify } from '../utils/helpers';
 
 
 
 test.describe('BBC Ana Sayfa Testi', () => {
 
-
-    let homePage: HomePage;
-    let newsPage: NewsPage;
-    let sportPage: SportPage;
-    let businessPage: BusinessPage;
-    let innovationPage: InnovationPage;
-    let culturePage: CulturePage;
-    let artsPage: ArtsPage;
-    let travelPage: TravelPage;
-    let earthPage: EarthPage;
-    let audioPage: AudioPage;
-    let videoPage: VideoPage;
-    let livePage: LivePage;
-
+    let pages: ReturnType<typeof createPages>;
 
     test.beforeEach(async ({ page }) => {
 
         await setupPage(page);
-        homePage = new HomePage(page);
-        newsPage = new NewsPage(page);
-        sportPage = new SportPage(page);
-        businessPage = new BusinessPage(page);
-        innovationPage = new InnovationPage(page);
-        culturePage = new CulturePage(page);
-        artsPage = new ArtsPage(page);
-        travelPage = new TravelPage(page);
-        earthPage = new EarthPage(page);
-        audioPage = new AudioPage(page);
-        videoPage = new VideoPage(page);
-        livePage = new LivePage(page);
+        pages = createPages(page);
+
 
     });
 
@@ -59,43 +25,44 @@ test.describe('BBC Ana Sayfa Testi', () => {
 
     test('Ana sayfa düzgün şekilde yüklenmeli', async ({ page }) => {
 
-       const title = await homePage.getPageTitle();
+       const title = await pages.home.getPageTitle();
        expect(title).toContain('BBC Home');
-       expect(await homePage.isNewsCategoryVisible());
+       expect(await pages.home.isNewsCategoryVisible());
 
     });
 
     test('BBC Kategorilerinin Görünürlüğünü ve Yönlendirmelerini Doğrula', async () => {
 
-        expect(await homePage.isHomeCategoryVisible());
-        expect(await homePage.isNewsCategoryVisible());
-        expect(await homePage.isSportCategoryVisible());
-        expect(await homePage.isBusinessCategoryVisible());
-        expect(await homePage.isInnovationCategoryVisible());
-        expect(await homePage.isCultureCategoryVisible());
-        expect(await homePage.isArtsCategoryVisible());
-        expect(await homePage.isTravelCategoryVisible());
-        expect(await homePage.isEarthCategoryVisible());
-        expect(await homePage.isAudioCategoryVisible());
-        expect(await homePage.isVideoCategoryVisible());
-        expect(await homePage.isLiveCategoryVisible());
+        expect(await pages.home.isHomeCategoryVisible());
+        expect(await pages.home.isNewsCategoryVisible());
+        expect(await pages.home.isSportCategoryVisible());
+        expect(await pages.home.isBusinessCategoryVisible());
+        expect(await pages.home.isInnovationCategoryVisible());
+        expect(await pages.home.isCultureCategoryVisible());
+        expect(await pages.home.isArtsCategoryVisible());
+        expect(await pages.home.isTravelCategoryVisible());
+        expect(await pages.home.isEarthCategoryVisible());
+        expect(await pages.home.isAudioCategoryVisible());
+        expect(await pages.home.isVideoCategoryVisible());
+        expect(await pages.home.isLiveCategoryVisible());
 
-        const homePageTitle = await homePage.getPageTitle();
+        const homePageTitle = await pages.home.getPageTitle();
         expect(homePageTitle).toContain('BBC Home');
 
+        await clickCategoryAndVerify(pages.home, 'News', async () => pages.news.isNewsLogoVisible());
+        await clickCategoryAndVerify(pages.home, 'Sport', async () => pages.sport.isSportLogoVisible());
+        await pages.sport.clickHomeCategory();
+        await clickCategoryAndVerify(pages.home, 'Business',async () => pages.business.isBusinessTitleVisible());
+        await clickCategoryAndVerify(pages.home, 'Innovation', async () => pages.innovation.isInnovationTitleVisible());
+        await clickCategoryAndVerify(pages.home, 'Culture', async () => pages.culture.isCultureTitleVisible());
+        await clickCategoryAndVerify(pages.home, 'Arts', async () => pages.arts.isArtsTitleVisible());
+        await clickCategoryAndVerify(pages.home, 'Travel', async () => pages.travel.isTravelTitleVisible());
+        await clickCategoryAndVerify(pages.home, 'Earth', async () => pages.earth.isEarthTitleVisible());
+        await clickCategoryAndVerify(pages.home, 'Audio',async () => pages.audio.isAudioTitleVisible());
+        await clickCategoryAndVerify(pages.home, 'Video', async () => pages.video.isVideoTitleVisible());
+        await clickCategoryAndVerify(pages.home, 'Live',async () => pages.live.isLiveNowTitleVisible());
 
-        await clickCategoryAndVerify(homePage, 'News', () => newsPage.isNewsLogoVisible());
-        await clickCategoryAndVerify(homePage, 'Sport', () => sportPage.isSportLogoVisible());
-        await sportPage.clickHomeCategory();
-        await clickCategoryAndVerify(homePage, 'Business', () => businessPage.isBusinessTitleVisible());
-        await clickCategoryAndVerify(homePage, 'Innovation', () => innovationPage.isInnovationTitleVisible());
-        await clickCategoryAndVerify(homePage, 'Culture', () => culturePage.isCultureTitleVisible());
-        await clickCategoryAndVerify(homePage, 'Arts', () => artsPage.isArtsTitleVisible());
-        await clickCategoryAndVerify(homePage, 'Travel', () => travelPage.isTravelTitleVisible());
-        await clickCategoryAndVerify(homePage, 'Earth', () => earthPage.isEarthTitleVisible());
-        await clickCategoryAndVerify(homePage, 'Audio', () => audioPage.isAudioTitleVisible());
-        await clickCategoryAndVerify(homePage, 'Video', () => videoPage.isVideoTitleVisible());
-        await clickCategoryAndVerify(homePage, 'Live', () => livePage.isLiveNowTitleVisible());
+
 
 
     });
