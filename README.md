@@ -1,55 +1,31 @@
-📰 BBC News Test Otomasyonu<br/>
-Bu proje, Playwright ve TypeScript kullanarak BBC News web sitesinin temel işlevlerini test etmek için geliştirilmiştir. Sayfa nesne modeli (POM) yapısı kullanılarak oluşturulan bu test otomasyonu, navigasyon, arama fonksiyonu ve Premier League puan tablosu gibi çeşitli özelliklerin doğruluğunu kontrol etmektedir.
+📰 BBC News Otomasyon Test Projesi<br/>
+Bu proje, Playwright ve TypeScript kullanarak BBC News web sitesinin çeşitli bölümlerini test etmek için geliştirilmiştir. Proje, sayfa nesne modeli (POM) yapısını kullanarak ana sayfa, arama fonksiyonu ve farklı kategorilerdeki içeriklerin doğrulamasını gerçekleştirmektedir.
 
-📌 Kullanılan Teknolojiler<br/>
-🖥️ Test Framework: Playwright<br/>
-📝 Programlama Dili: TypeScript<br/>
-📦 Test Senaryoları: UI Test Otomasyonu<br/>
-🔧 Proje Yapısı: Page Object Model (POM)<br/>
+🎯 Projenin Amacı<br/>
+✔ BBC News web sitesinin temel işlevlerini test etmek<br/>
+✔ Arama fonksiyonunun doğruluğunu ve sonuçların uygunluğunu kontrol etmek<br/>
+✔ Farklı kategorilerdeki sayfaların yüklenip yüklenmediğini doğrulamak<br/>
+✔ Premier League puan tablosundaki verileri BBC ile karşılaştırarak doğruluk testi yapmak<br/>
 
-🏆 Test Kapsamı<br/>
-✅ Navigasyon Testleri:<br/>
-BBC News ana sayfasındaki farklı kategoriler arasında geçiş yapılarak doğrulama testleri gerçekleştirilir.<br/>
+🚀 Kullanılan Teknolojiler<br/>
+Playwright → Web otomasyon testi<br/>
+TypeScript → Güçlü tip desteği ve okunabilir kod yapısı<br/>
+Jest / Playwright Test Runner → Test çalıştırma ve doğrulama<br/>
+Page Object Model (POM) → Daha temiz ve sürdürülebilir test senaryoları<br/>
 
-✅ Arama Fonksiyonu Testleri:<br/>
-Belirli bir kelimenin arama sonuçlarında yer alıp almadığını kontrol eder.<br/>
+📌 Test Kapsamı<br/>
+📌 Ana Sayfa Testleri<br/>
+📌 Arama Fonksiyonu Testleri<br/>
+📌 Kategori Sayfalarının Doğrulanması (News, Sport, Business, Culture vb.)<br/>
+📌 Premier League Puan Tablosunun Doğruluk Testi<br/>
 
-✅ Premier League Puan Tablosu Karşılaştırma:<br/>
-BBC News ve Premier League'in resmi web sitesindeki ilk 3 takımın sıralamasını ve puanlarını karşılaştırarak doğrulama yapar.<br/>
+🔍 Premier League Puan Tablosu Testi<br/>
+Premier League’in resmi web sitesindeki güncel puan tablosu ile BBC Sports sayfasındaki puan tablosu karşılaştırılarak ilk 3 takımın isim ve puanlarının eşleştiği doğrulanmaktadır.<br/>
 
-📂Proje Yapısı<br/>
-
-BBC-News-Test/
-│── tests/                    
-│   ├── homepage.spec.ts       
-│   ├── search.spec.ts         
-│   ├── sportpage.spec.ts      
-│   ├── businesspage.spec.ts   
-│   ├── culturepage.spec.ts    
-│   ├── innovationpage.spec.ts 
-│   ├── newspage.spec.ts       
-│   ├── artspage.spec.ts       
-│   ├── travelpage.spec.ts     
-│   ├── earthpage.spec.ts      
-│   ├── audiopage.spec.ts      
-│   ├── videopage.spec.ts      
-│   ├── livepage.spec.ts       
-│── pages/                     
-│   ├── HomePage.ts
-│   ├── NewsPage.ts
-│   ├── SportPage.ts
-│   ├── BusinessPage.ts
-│   ├── InnovationPage.ts
-│   ├── CulturePage.ts
-│   ├── ArtsPage.ts
-│   ├── TravelPage.ts
-│   ├── EarthPage.ts
-│   ├── AudioPage.ts
-│   ├── VideoPage.ts
-│   ├── LivePage.ts
-│── helpers/                    
-│── playwright.config.ts        
-│── README.md                   
+📌 Adımlar:<br/>
+1️⃣ Premier League'in resmi web sitesinden ilk 3 takımın isim ve puanlarını çek<br/>
+2️⃣ BBC Sports sayfasındaki Premier League puan tablosunu al<br/>
+3️⃣ Takımların isimleri ve puanlarının eşleştiğini doğrula<br/>
 
 🧐 Geri Bildirim ve Katkı<br/>
 Bu projeyi geliştirmek için her türlü geri bildiriminiz ve öneriniz benim için çok değerli! Pull request’ler ve issue'lar açarak katkıda bulunabilirsiniz.<br/>
