@@ -46,3 +46,5 @@ export async function clickCategoryAndVerify(
     await expect(isCategoryVisible()).resolves.toBe(true);
 
 }
+
+

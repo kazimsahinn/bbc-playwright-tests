@@ -1,4 +1,4 @@
-import {Page} from '@playwright/test';
+import {expect, Page} from '@playwright/test';
 
 export class HomePage {
     page: Page;
@@ -141,17 +141,26 @@ export class HomePage {
         return await LiveCategory.click();
     }
 
+    async clickSearchButton(){
+        const searchButton = await this.page.locator('//button[@aria-label=\'Search BBC\']');
+        return await searchButton.click();
+    }
+
+    async searchText(searchQuery: string) {
+        await this.page.fill('//input[@data-testid=\'search-input-field\']',searchQuery);
+        await this.page.press('//input[@data-testid=\'search-input-field\']','Enter');
+        
+    }
+
+    async verifySearchResultContainsText(){
+        const firstSearchResult = await this.page.locator('//h2[@data-testid=\'card-headline\']').first();
+
+        let expectedSearchText = 'Turkey';
+        let actualSearchText = await firstSearchResult.textContent();
+
+        expect(actualSearchText).toContain(expectedSearchText);
 
 
 
-
-
-
-
-
-
-
-
-
-
+    }
 }

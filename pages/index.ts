@@ -12,7 +12,7 @@ import { AudioPage } from './AudioPage';
 import { VideoPage } from './VideoPage';
 import { LivePage } from './LivePage';
 
-// Sayfaları tek bir nesnede toplayalım
+
 export const createPages = (page: Page) => ({
     home: new HomePage(page),
     news: new NewsPage(page),

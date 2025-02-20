@@ -1,22 +1,20 @@
 import { test, expect } from '@playwright/test';
-import { HomePage } from '../pages/HomePage';
+import { createPages } from '../pages';
 import { setupPage, cleanupPage } from '../setupTest/test-setup';
-import { NewsPage } from '../pages/NewsPage';
 
 
 
-test.describe('BBC News Sayfa Tesi', () => {
+
+test.describe.serial('BBC News Sayfa Tesi', () => {
 
 
-    let homepage: HomePage;
-    let newspage: NewsPage;
+    let pages: ReturnType<typeof createPages>;
 
 
     test.beforeEach(async ({ page }) => {
 
         await setupPage(page);
-        homepage = new HomePage(page);
-        newspage = new NewsPage(page);
+        pages = createPages(page);
     });
 
 
@@ -26,18 +24,17 @@ test.describe('BBC News Sayfa Tesi', () => {
 
     test('"News" haber sayfasında ilk haber başlığını doğrulama', async ({ page }) => {
 
-        await homepage.clickNewsCategory();
+        await pages.home.clickNewsCategory();
 
-        const headlineText = await newspage.getNewsHeadline();
+        const headlineText = await pages.news.getNewsHeadline();
         const newHeadline = await headlineText.innerText();
         console.log('News Headline:', newHeadline);
 
-        await newspage.clickFirstNewsHeadline();
+        await pages.news.clickFirstNewsHeadline();
 
-        const pageTitle = await homepage.getPageTitle();
+        const pageTitle = await pages.home.getPageTitle();
 
-        expect(newHeadline).toContain(pageTitle);
-
+        expect(pageTitle).toContain(newHeadline);
 
     });
 

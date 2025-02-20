@@ -5,7 +5,7 @@ import { clickCategoryAndVerify } from '../utils/helpers';
 
 
 
-test.describe('BBC Ana Sayfa Testi', () => {
+test.describe.serial('BBC Ana Sayfa Testi', () => {
 
     let pages: ReturnType<typeof createPages>;
 
@@ -63,6 +63,15 @@ test.describe('BBC Ana Sayfa Testi', () => {
         await clickCategoryAndVerify(pages.home, 'Live',async () => pages.live.isLiveNowTitleVisible());
 
 
+
+
+    });
+
+    test('Arama yapma ve sonuçları doğrulama', async () => {
+
+        await pages.home.clickSearchButton();
+        await pages.home.searchText('Turkey');
+        await pages.home.verifySearchResultContainsText();
 
 
     });
