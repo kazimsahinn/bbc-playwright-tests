@@ -23,4 +23,10 @@ export class NewsPage {
         return await newsLogo.isVisible();
     }
 
+    async getNewsDetailHeadline(){
+        const newsHeadline = await this.page.locator('//h1[@class=\'sc-518485e5-0 bWszMR\']');
+        return await newsHeadline.innerText();
+
+    }
+
 }

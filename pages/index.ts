@@ -11,6 +11,7 @@ import { EarthPage } from './EarthPage';
 import { AudioPage } from './AudioPage';
 import { VideoPage } from './VideoPage';
 import { LivePage } from './LivePage';
+import { RegisterSignInPage } from './RegisterSignInPage';
 
 
 export const createPages = (page: Page) => ({
@@ -25,5 +26,6 @@ export const createPages = (page: Page) => ({
     earth: new EarthPage(page),
     audio: new AudioPage(page),
     video: new VideoPage(page),
-    live: new LivePage(page)
+    live: new LivePage(page),
+    registerSingIn: new RegisterSignInPage(page),
 });

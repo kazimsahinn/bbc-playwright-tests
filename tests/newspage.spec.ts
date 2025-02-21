@@ -32,9 +32,10 @@ test.describe.serial('BBC News Sayfa Tesi', () => {
 
         await pages.news.clickFirstNewsHeadline();
 
-        const pageTitle = await pages.home.getPageTitle();
+        const newsDetailHeadline = await pages.news.getNewsDetailHeadline();
+        console.log('News Detail Headline:', newsDetailHeadline);
 
-        expect(pageTitle).toContain(newHeadline);
+        expect(newHeadline).toContain(newsDetailHeadline);
 
     });
 
