@@ -10,7 +10,10 @@ export class ArtsPage {
 
     async isArtsTitleVisible(){
         const ArtsTitle = await this.page.locator('//h1[@data-testid=\'nested-navigation-page-title\']');
+        await ArtsTitle.waitFor({state: 'visible'});
         return await ArtsTitle.isVisible();
     }
+
+
 
 }

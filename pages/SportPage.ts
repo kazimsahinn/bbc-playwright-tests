@@ -10,6 +10,7 @@ export class SportPage {
 
     async isSportLogoVisible() {
         const SportLogo = await this.page.locator('//div[@class=\'ssrcss-kpltdl-LogoWrapper esbu9dd5\']');
+        await SportLogo.waitFor({state: 'visible'});
         return await SportLogo.isVisible();
     }
 

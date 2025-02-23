@@ -24,7 +24,7 @@ export class NewsPage {
     }
 
     async getNewsDetailHeadline(){
-        const newsHeadline = await this.page.locator('//h1[@class=\'sc-518485e5-0 bWszMR\']');
+        const newsHeadline = await this.page.locator('//h1');
         return await newsHeadline.innerText();
 
     }

@@ -10,6 +10,7 @@ export class AudioPage {
 
     async isAudioTitleVisible(){
         const AudioTitle = await this.page.locator('//h1[@data-testid=\'nested-navigation-page-title\']');
+        await AudioTitle.waitFor({state: 'visible'});
         return await AudioTitle.isVisible();
     }
 

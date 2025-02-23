@@ -10,6 +10,7 @@ export class LivePage {
 
     async isLiveNowTitleVisible(){
         const LiveNowTitle = await this.page.locator('//h1[text()=\'Live Now\']');
+        await LiveNowTitle.waitFor({state: 'visible'});
         return await LiveNowTitle.isVisible();
     }
 
